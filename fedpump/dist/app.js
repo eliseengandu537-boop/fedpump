@@ -80,7 +80,9 @@ document.querySelectorAll('[data-gallery]').forEach(button => button.addEventLis
 }));
 document.querySelectorAll('dialog').forEach(dialog => {
   dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('close', () => document.body.classList.remove('dialog-open'));
+  dialog.addEventListener('close', () => {
+    if (!document.querySelector('dialog[open]')) document.body.classList.remove('dialog-open');
+  });
   dialog.addEventListener('click', event => {
     const box = dialog.getBoundingClientRect();
     if (event.target === dialog && (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom)) dialog.close();
@@ -110,7 +112,10 @@ enquiryForm.addEventListener('submit', async event => {
       throw new Error('Submission failed');
     }
     enquiryForm.reset();
-    enquiryStatus.textContent = 'Thank you for your message. The Fedpump team will be in touch.';
+    enquiryStatus.hidden = true;
+    enquiryStatus.textContent = '';
+    enquiryDialog.close();
+    openDialog(document.querySelector('#enquiry-success'));
   } catch (error) {
     console.error('Enquiry submission failed:', error);
     enquiryStatus.textContent = 'Your message could not be sent. Please try again or email fedpump@outlook.com.';

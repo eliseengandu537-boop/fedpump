@@ -89,3 +89,14 @@ dialog{border:0;padding:0}dialog::backdrop{background:#03101fd9;backdrop-filter:
 @media(max-width:600px){.lead-assistant{right:12px;bottom:88px}.lead-assistant-panel{position:fixed;inset:auto 12px 14px;width:auto;height:min(680px,calc(100dvh - 28px));min-height:340px}}
 @media(prefers-reduced-motion:reduce){.lead-assistant-launcher{transition:none}}
 @media(max-width:600px){.pump-types>div{flex-wrap:wrap;justify-content:flex-start;column-gap:18px;row-gap:8px}.pump-types strong{font-size:15px;letter-spacing:-.4px}}
+
+.enquiry-success{width:min(480px,calc(100% - 32px));max-height:calc(100svh - 40px);overflow:auto;padding:52px 44px 44px;text-align:center;color:var(--ink);background:var(--paper);box-shadow:0 24px 80px #03101f55;animation:success-enter .35s ease both}
+.success-mark{display:grid;place-items:center;width:70px;height:70px;margin:0 auto 28px;border:1px solid #d5a86f;border-radius:50%;background:#f5e6d1}
+.success-mark svg{width:38px;height:38px;fill:none;stroke:#9b6b35;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.success-eyebrow{font-size:9px;font-weight:700;letter-spacing:.19em;color:#9c7347}
+.enquiry-success h2{margin:16px 0 0;font-size:clamp(30px,5vw,39px);line-height:1.13;letter-spacing:-1.5px}
+.enquiry-success h2 span{color:#849294}
+.enquiry-success p{max-width:320px;margin:18px auto 28px;font-size:13px;line-height:1.7;color:#65757d}
+.success-close{margin:auto;justify-content:center}
+@keyframes success-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.enquiry-success{padding:42px 24px 32px}.success-mark{width:62px;height:62px;margin-bottom:23px}}
