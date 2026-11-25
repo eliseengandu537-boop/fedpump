@@ -169,7 +169,6 @@ html.lenis { scroll-behavior: auto !important; }
   .panel-index > span { font-size: 7px; letter-spacing: 1.5px; }
   .workshop-panel h3 { font-size: 34px; line-height: 1.08; letter-spacing: -1.5px; }
   .workshop-panel h3 br { display: none; }
-  .workshop-panel h3 br:after { content: ' '; }
   .workshop-panel-copy > p { margin-top: 15px; font-size: 11px; line-height: 1.8; }
   .capability-tags { margin-top: 14px; gap: 6px; }
   .capability-tags span { font-size: 6px; padding: 4px 7px; letter-spacing: .8px; }

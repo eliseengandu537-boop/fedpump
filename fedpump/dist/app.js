@@ -87,28 +87,32 @@ document.querySelectorAll('dialog').forEach(dialog => {
   });
 });
 
-let enquiryText = '';
 const enquiryForm = document.querySelector('#enquiry-form');
-enquiryForm.addEventListener('submit', event => {
+const enquiryStatus = document.querySelector('#enquiry-status');
+enquiryForm.addEventListener('submit', async event => {
   event.preventDefault();
   if (!enquiryForm.reportValidity()) return;
-  const values = new FormData(enquiryForm);
-  const subject = `Fedpump enquiry: ${values.get('service')}`;
-  enquiryText = `Hello Fedpump team,\n\nI would like to discuss ${values.get('service').toLowerCase()}.\n\nName: ${values.get('name')}\nCompany: ${values.get('company') || 'Not provided'}\nEmail: ${values.get('email')}\n\nProject details:\n${values.get('details')}\n\nKind regards,\n${values.get('name')}`;
-  document.querySelector('#enquiry-result').hidden = false;
-  document.querySelector('#copy-enquiry').textContent = 'Copy enquiry';
-  window.location.href = `mailto:Sonia.dacunha@yahoo.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(enquiryText)}`;
-});
-document.querySelector('#copy-enquiry').addEventListener('click', async event => {
-  const button = event.currentTarget;
-  try { await navigator.clipboard.writeText(enquiryText); button.textContent = 'Enquiry copied ✓'; }
-  catch {
-    let fallback = document.querySelector('#enquiry-copy-fallback');
-    if (!fallback) { fallback = document.createElement('textarea'); fallback.id = 'enquiry-copy-fallback'; fallback.setAttribute('aria-label', 'Enquiry text to copy'); fallback.readOnly = true; button.after(fallback); }
-    fallback.value = enquiryText; fallback.focus(); fallback.select(); button.textContent = 'Select and copy the enquiry below';
+  const button = enquiryForm.querySelector('[type="submit"]');
+  button.disabled = true;
+  enquiryStatus.hidden = false;
+  enquiryStatus.textContent = 'Sending your message…';
+  try {
+    const data = Object.fromEntries(new FormData(enquiryForm));
+    const response = await fetch('https://formsubmit.co/ajax/Sonia.dacunha@yahoo.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    if (!response.ok || String(result.success) !== 'true') throw new Error('Submission failed');
+    enquiryForm.reset();
+    enquiryStatus.textContent = 'Thank you for your message. The Fedpump team will be in touch.';
+  } catch {
+    enquiryStatus.textContent = 'Your message could not be sent. Please try again or email Sonia.dacunha@yahoo.com.';
+  } finally {
+    button.disabled = false;
   }
 });
-enquiryForm.addEventListener('input', () => { document.querySelector('#enquiry-result').hidden = true; });
 
 // Scroll behaviour lives in motion.js; enquiry and gallery interactions remain independent.
 document.querySelector('#copyright-year').textContent = new Date().getFullYear();
