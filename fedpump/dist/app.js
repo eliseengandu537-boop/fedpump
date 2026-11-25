@@ -99,7 +99,7 @@ enquiryForm.addEventListener('submit', async event => {
   try {
     const data = Object.fromEntries(new FormData(enquiryForm));
     data._url = 'https://www.fedpump.com/';
-    const response = await fetch('https://formsubmit.co/ajax/Sonia.dacunha@yahoo.com', {
+    const response = await fetch('https://formsubmit.co/ajax/fedpump@outlook.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(data)
@@ -113,7 +113,7 @@ enquiryForm.addEventListener('submit', async event => {
     enquiryStatus.textContent = 'Thank you for your message. The Fedpump team will be in touch.';
   } catch (error) {
     console.error('Enquiry submission failed:', error);
-    enquiryStatus.textContent = 'Your message could not be sent. Please try again or email Sonia.dacunha@yahoo.com.';
+    enquiryStatus.textContent = 'Your message could not be sent. Please try again or email fedpump@outlook.com.';
   } finally {
     button.disabled = false;
   }

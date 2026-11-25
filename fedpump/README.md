@@ -16,7 +16,7 @@ To deploy from either folder, run `npx vercel@latest login`, then `npx vercel@la
 
 Alternatively, import the Git repository in Vercel, leave its Root Directory as the repository root, and use the included configuration. If selecting `fedpump` as Root Directory, its own configuration supplies the correct output path. No environment variables are required.
 
-The `.vercelignore` files exclude PDF extraction artifacts, development tools and other local-only material from CLI uploads. The enquiry form sends submissions through FormSubmit. After deployment, submit the form once and activate the confirmation email sent to Sonia.dacunha@yahoo.com.
+The `.vercelignore` files exclude PDF extraction artifacts, development tools and other local-only material from CLI uploads. The enquiry form sends submissions through FormSubmit. After deployment, submit the form once and activate the confirmation email sent to fedpump@outlook.com.
 
 ## Checks
 
@@ -31,7 +31,7 @@ Run `npm run check` for JavaScript syntax validation. Development dependencies s
 - `dist/privacy-policy.html` and `dist/privacy.css`: privacy policy, linked from the homepage footer, enquiry form and project assistant. The page explains the enquiry workflows and the owner's confirmation that enquiries are used only to reply and arrange work. Review this policy whenever providers, tracking or enquiry handling change.
 - `scripts/prepare-favicons.mjs`: run with Node to regenerate square PNG icons, the Apple touch icon and the multi-size ICO from the existing company logo. These files are deployed at stable root URLs; Google decides when to refresh the search-result icon.
 
-The enquiry form sends submissions through FormSubmit to Sonia.dacunha@yahoo.com. The guided project assistant opens the visitor's email application with a prepared draft for the visitor to send. The assistant does not use a live AI model, send messages, or store lead details on a server. Manrope and DM Sans are bundled locally, with their font licences, so the site makes no external font requests.
+The enquiry form sends submissions through FormSubmit to fedpump@outlook.com. The guided project assistant opens the visitor's email application with a prepared draft for the visitor to send. The assistant does not use a live AI model, send messages, or store lead details on a server. Manrope and DM Sans are bundled locally, with their font licences, so the site makes no external font requests.
 
 Company facts and contact details are based on the supplied profile. No ISO certification is claimed; the profile describes ISO 9001 as in progress. The original PDF, which includes affidavit pages, is not included in the deployed assets.
 
