@@ -98,16 +98,21 @@ enquiryForm.addEventListener('submit', async event => {
   enquiryStatus.textContent = 'Sending your message…';
   try {
     const data = Object.fromEntries(new FormData(enquiryForm));
+    data._url = 'https://www.fedpump.com/';
     const response = await fetch('https://formsubmit.co/ajax/Sonia.dacunha@yahoo.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(data)
     });
     const result = await response.json();
-    if (!response.ok || String(result.success) !== 'true') throw new Error('Submission failed');
+    if (!response.ok || String(result.success) !== 'true') {
+      console.error('Enquiry service rejected the submission:', result.message || response.status);
+      throw new Error('Submission failed');
+    }
     enquiryForm.reset();
     enquiryStatus.textContent = 'Thank you for your message. The Fedpump team will be in touch.';
-  } catch {
+  } catch (error) {
+    console.error('Enquiry submission failed:', error);
     enquiryStatus.textContent = 'Your message could not be sent. Please try again or email Sonia.dacunha@yahoo.com.';
   } finally {
     button.disabled = false;
